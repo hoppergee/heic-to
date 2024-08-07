@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Converting HEIF/HEIF image formats to PNG/JPEG in the browser",
   "main": "dist/heic-to.js",
+  "scripts": {
+    "build": "node esbuild.mjs"
+  },
   "author": "Hopper Gee",
   "license": "LGPL-3.0",
   "devDependencies": {
