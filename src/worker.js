@@ -34,7 +34,6 @@ const decodeBuffer = async (buffer) => {
 };
 
 onmessage = async (message) => {
-  console.log(message)
 	const id = message.data.id;
 
   try {
