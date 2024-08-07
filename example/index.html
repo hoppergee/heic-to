@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>heic-to</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center; 
+      flex-direction: column;
+      height: 100vh;
+    }
+    input {
+      border: 1px solid black;
+      padding: 10px;
+    }
+    label {
+        display: block;;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        color: red;
+    }
+    .images {
+      width: 200px;
+      height: 200px;
+    }
+    img {
+      display: block;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>heic-to</h1>
+
+  <main>
+    <input type="file">
+    <label></label>
+    <div class="images"></div>
+  </main>
+
+  <script type="module">
+    import {heicTo, isHeic} from '../dist/heic-to.js'
+
+    const imagesContainer = document.querySelector(".images")
+    const messageLabel = document.querySelector("label")
+    const field = document.querySelector("input")
+
+    field.addEventListener('change', async (event) => {
+
+      let imageDom = document.querySelector("img")
+      if (!imageDom) {
+        imageDom = document.createElement('img')
+        imagesContainer.appendChild(imageDom)
+      }
+      imageDom.src = ''
+      imageDom.alt = "Loading..."
+      messageLabel.textContent = "Loading..."
+
+      const image = field.files[0]
+      if (await isHeic(image)) {
+        messageLabel.textContent = "It's a HEIC image"
+        const heifImage = await heicTo({blob: image, type: 'image/jpeg', quality: 0.5})
+        imageDom.src = URL.createObjectURL(heifImage)
+      } else {
+        messageLabel.textContent = "It's not a HEIC image"
+        imageDom.src = URL.createObjectURL(image)
+      }
+
+    })
+  </script>
+</body>
+</html>

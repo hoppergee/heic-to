@@ -6,6 +6,14 @@ Inspired by [heic2any](https://github.com/alexcorvi/heic2any) and [libheif-web](
 
 ### Development guide
 
+#### How to fast test your changes on local?
+
+```bash
+yarn s
+```
+
+This will open `http://127.0.0.1:8080/example/` for easy testing.
+
 #### How to build libheif.js from [libheif](https://github.com/strukturag/libheif) on Mac
 
 ```bash
