@@ -1,4 +1,5 @@
 
+// Build from libheif 1.18.1
 var buildLibheif = (() => {
   var _scriptName = typeof document != 'undefined' ? document.currentScript?.src : undefined;
   if (typeof __filename != 'undefined') _scriptName ||= __filename;
