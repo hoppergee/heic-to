@@ -2,7 +2,39 @@
 
 Convert HEIC/HEIF images to JPEG, PNG in browser using Javascript.
 
-Inspired by [heic2any](https://github.com/alexcorvi/heic2any) and [libheif-web](https://github.com/joutvhu/libheif-web). The purpose of heic-to is to continuously follow up on releases of [libheif](https://github.com/strukturag/libheif)
+Inspired by [heic2any](https://github.com/alexcorvi/heic2any) and [libheif-web](https://github.com/joutvhu/libheif-web). The purpose of heic-to is to continuously follow up on releases of [libheif](https://github.com/strukturag/libheif) to be able to preview HEIC/HEIF images in browser.
+
+### Usage
+
+#### Check whether the image is HEIC or not 
+
+```js
+import { isHeic } from "hiec-to"
+
+const file = field.files[0]
+await isHeic(file)
+```
+
+#### Convert HEIC to JPEG/PNG
+
+
+```js
+import { heicTo } from "hiec-to"
+
+const file = field.files[0]
+
+const jpeg = await heicTo({
+  blob: file,
+  type: "image/jpeg",
+  quality: 0.5
+})
+
+const png = await heicTo({
+  blob: file,
+  type: "image/png",
+  quality: 0.5
+})
+```
 
 ### Development guide
 
