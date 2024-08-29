@@ -11,7 +11,7 @@ Currently, heic-to is using [libheif 1.18.2](https://github.com/strukturag/libhe
 #### Check whether the image is HEIC or not 
 
 ```js
-import { isHeic } from "hiec-to"
+import { isHeic } from "heic-to"
 
 const file = field.files[0]
 await isHeic(file)
@@ -21,7 +21,7 @@ await isHeic(file)
 
 
 ```js
-import { heicTo } from "hiec-to"
+import { heicTo } from "heic-to"
 
 const file = field.files[0]
 
