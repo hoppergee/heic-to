@@ -11,8 +11,17 @@
     "type": "git",
     "url": "https://github.com/hoppergee/heic-to.git"
   },
+  "types": "dist/heic-to.d.ts",
   "keywords": [
-    "heic", "heif", "jpeg", "jpg", "png", "conversion", "convert", "image", "decoder"
+    "heic",
+    "heif",
+    "jpeg",
+    "jpg",
+    "png",
+    "conversion",
+    "convert",
+    "image",
+    "decoder"
   ],
   "author": "Hopper Gee",
   "license": "LGPL-3.0",
