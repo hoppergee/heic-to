@@ -52,7 +52,7 @@ This will open `http://127.0.0.1:8080/example/` for easy testing.
 
 ```bash
 brew install cmake make pkg-config x265 libde265 libjpeg libtool
-brew instll emscripten
+brew install emscripten
 
 git clone git@github.com:strukturag/libheif.git
 ```
