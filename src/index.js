@@ -32,17 +32,16 @@ const decodeBuffer = async (buffer) => {
 		const id = (Math.random() * new Date().getTime()).toString();
 		const message = { id, buffer };
     worker.postMessage(message);
-    worker.addEventListener(
-			"message",
-			(message) => {
-				if (message.data.id === id) {
-					if (message.data.error) {
-						return reject(message.data.error);
-					}
-					return resolve(message.data.imageData);
-				}
-			}
-		);
+    const handleEvent = (event) => {
+      if (event.data.id === id) {
+        event.currentTarget.removeEventListener("message", handleEvent)
+        if (event.data.error) {
+          return reject(event.data.error);
+        }
+        return resolve(event.data.imageData);
+      }
+    }
+    worker.addEventListener("message", handleEvent);
 	});
 }
 
