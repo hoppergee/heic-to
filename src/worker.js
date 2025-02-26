@@ -1,4 +1,4 @@
-import buildLibheif from "./lib/libheif";
+import buildLibheif from LIB_HEIF_PATH;
 
 const libheif = buildLibheif()
 

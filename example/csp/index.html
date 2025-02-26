@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>heic-to</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center; 
+      flex-direction: column;
+      height: 100vh;
+    }
+    input {
+      border: 1px solid black;
+      padding: 10px;
+    }
+    label {
+        display: block;;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        color: red;
+    }
+    .images {
+      width: 200px;
+      height: 200px;
+    }
+    img {
+      display: block;
+      width: 100%;
+    }
+  </style>
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, post-check=0, pre-check=0">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self'; worker-src blob:;">
+  <script src="./app.js" type="module"></script>
+</head>
+<body>
+
+  <h1>heic-to</h1>
+
+  <main>
+    <input type="file">
+    <label></label>
+    <div class="images"></div>
+  </main>
+</body>
+</html>
