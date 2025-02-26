@@ -51,6 +51,21 @@ const png = await heicTo({
 })
 ```
 
+#### Cotent Security Policy
+
+When meets CSP issue like this:
+
+```
+Uncaught (in promise) EvalError: Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive
+```
+
+Fix it by using `csp/heic-to` 
+
+```diff
+- import { heicTo } from "heic-to"
++ import { heicTo } from "csp/heic-to"
+```
+
 ### Development guide
 
 #### How to fast test your changes on local?
