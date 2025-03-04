@@ -4,10 +4,11 @@ Convert HEIC/HEIF images to JPEG, PNG in browser using Javascript.
 
 Inspired by [heic2any](https://github.com/alexcorvi/heic2any) and [libheif-web](https://github.com/joutvhu/libheif-web). The purpose of heic-to is to continuously follow up on releases of [libheif](https://github.com/strukturag/libheif) to be able to preview HEIC/HEIF images in browser.
 
-Currently, heic-to is using [libheif 1.19.6](https://github.com/strukturag/libheif/releases/tag/v1.19.6) under the hood. 
+Currently, heic-to is using [libheif 1.19.7](https://github.com/strukturag/libheif/releases/tag/v1.19.7) under the hood. 
 
 | Release  | libheif  |
 | -------- | -------- |
+| 1.1.8    | 1.19.7   | 
 | 1.1.7    | 1.19.6   | 
 | 1.1.6    | 1.19.5   | 
 | 1.1.5    | 1.19.5   | 
