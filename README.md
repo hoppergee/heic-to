@@ -66,7 +66,7 @@ Fix it by using `csp/heic-to`
 
 ```diff
 - import { heicTo } from "heic-to"
-+ import { heicTo } from "heic-to/dist/csp/heic-to"
++ import { heicTo } from "heic-to/csp"
 ```
 
 ### Development guide

@@ -3,6 +3,18 @@
   "version": "1.1.8",
   "description": "Converting HEIF/HEIF image formats to PNG/JPEG in the browser",
   "main": "dist/heic-to.js",
+  "export": {
+    ".": {
+      "import": "./dist/heic-to.js",
+      "require": "./dist/heic-to.js",
+      "types": "./dist/heic-to.d.ts"
+    },
+    "./csp": {
+      "import": "./dist/csp/heic-to.js",
+      "require": "./dist/csp/heic-to.js",
+      "types": "./dist/csp/heic-to.d.ts"
+    }
+  },
   "scripts": {
     "build": "node esbuild.mjs",
     "s": "npx http-server -o ./example"
