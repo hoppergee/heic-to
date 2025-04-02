@@ -21,7 +21,7 @@ await esbuild.build({
     'tmp/src/worker.js'
   ],
   bundle: true,
-  minify: false,
+  minify: true,
   target: 'es6',
   platform: 'browser',
   outfile: 'tmp/worker.js',
@@ -35,7 +35,7 @@ esbuild.build({
     'src/index.js'
   ],
   bundle: true,
-  minify: false,
+  minify: true,
   target: 'es6',
   platform: 'browser',
   outfile: 'dist/heic-to.js',
@@ -87,7 +87,7 @@ await esbuild.build({
     'tmp/src/csp/worker.js'
   ],
   bundle: true,
-  minify: false,
+  minify: true,
   target: 'es6',
   platform: 'browser',
   outfile: 'tmp/csp/worker.js',
@@ -101,7 +101,7 @@ esbuild.build({
     'src/index.js'
   ],
   bundle: true,
-  minify: false,
+  minify: true,
   target: 'es6',
   platform: 'browser',
   outfile: 'dist/csp/heic-to.js',
