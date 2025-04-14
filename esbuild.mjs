@@ -143,3 +143,44 @@ esbuild.build({
     WORKER_FILE_CONTENT: JSON.stringify(cspWorkerFileMinifyContent)
   }
 });
+
+// ################
+// Build for standalone/heic-to.js
+// ################
+
+await esbuild.build({
+  entryPoints: [
+    'tmp/src/worker.js'
+  ],
+  bundle: true,
+  minify: true,
+  target: 'es6',
+  platform: 'browser',
+  outfile: 'tmp/standalone/worker.js',
+  external: ['fs', 'path']
+});
+
+const standaloneWorkerFileMinifyContent = fs.readFileSync('tmp/standalone/worker.js', 'utf8')
+
+// Produce an IIFE bundle
+esbuild.build({
+  entryPoints: [
+    'src/index.js'
+  ],
+  bundle: true,
+  minify: false,
+  target: 'es6',
+  platform: 'browser',
+  outfile: 'dist/standalone/heic-to.js',
+  format: 'iife',
+  globalName: 'HeicTo',
+  define: {
+    WORKER_FILE_CONTENT: JSON.stringify(standaloneWorkerFileMinifyContent)
+  },
+  footer: {
+    js: `
+window.heicTo = HeicTo.heicTo;
+window.isHeic = HeicTo.isHeic;
+    `
+  }
+});
