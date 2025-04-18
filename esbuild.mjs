@@ -145,7 +145,7 @@ esbuild.build({
 });
 
 // ################
-// Build for standalone/heic-to.js
+// Build for iife/heic-to.js
 // ################
 
 await esbuild.build({
@@ -156,31 +156,25 @@ await esbuild.build({
   minify: true,
   target: 'es6',
   platform: 'browser',
-  outfile: 'tmp/standalone/worker.js',
+  outfile: 'tmp/iife/worker.js',
   external: ['fs', 'path']
 });
 
-const standaloneWorkerFileMinifyContent = fs.readFileSync('tmp/standalone/worker.js', 'utf8')
+const iifeWorkerFileMinifyContent = fs.readFileSync('tmp/iife/worker.js', 'utf8')
 
 // Produce an IIFE bundle
 esbuild.build({
   entryPoints: [
-    'src/index.js'
+    'src/iife.js'
   ],
   bundle: true,
   minify: false,
   target: 'es6',
   platform: 'browser',
-  outfile: 'dist/standalone/heic-to.js',
+  outfile: 'dist/iife/heic-to.js',
   format: 'iife',
   globalName: 'HeicTo',
   define: {
-    WORKER_FILE_CONTENT: JSON.stringify(standaloneWorkerFileMinifyContent)
-  },
-  footer: {
-    js: `
-window.heicTo = HeicTo.heicTo;
-window.isHeic = HeicTo.isHeic;
-    `
+    WORKER_FILE_CONTENT: JSON.stringify(iifeWorkerFileMinifyContent)
   }
 });
