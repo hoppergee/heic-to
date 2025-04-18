@@ -72,6 +72,26 @@ Fix it by using `csp/heic-to`
 + import { heicTo } from "heic-to/csp"
 ```
 
+#### Access global variable with IIFE build
+
+If you would like to access heic-to with pure JavaScript without package builder like with CDN.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/heic-to@1.1.12/dist/iife/heic-to.js"></script>
+<script>
+  /*...*/
+  if (await HeicTo.isHeic(file)) {
+    const jpeg = await HeicTo({
+      blob: file,
+      type: "image/jpeg",
+      quality: 0.5
+    })
+    /*...*/
+  }
+  /*...*/
+</script>
+```
+
 ### Development guide
 
 #### How to fast test your changes on local?
