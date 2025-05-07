@@ -5,14 +5,14 @@
   "main": "dist/heic-to.js",
   "exports": {
     ".": {
+      "types": "./dist/heic-to.d.ts",
       "import": "./dist/heic-to.js",
-      "require": "./dist/heic-to.js",
-      "types": "./dist/heic-to.d.ts"
+      "require": "./dist/heic-to.js"
     },
     "./csp": {
+      "types": "./dist/csp/heic-to.d.ts",
       "import": "./dist/csp/heic-to.js",
-      "require": "./dist/csp/heic-to.js",
-      "types": "./dist/csp/heic-to.d.ts"
+      "require": "./dist/csp/heic-to.js"
     }
   },
   "scripts": {
@@ -39,7 +39,7 @@
   "license": "LGPL-3.0",
   "homepage": "https://github.com/hoppergee/heic-to",
   "devDependencies": {
-    "esbuild": "0.23.0",
+    "esbuild": "^0.25.4",
     "http-server": "^14.1.1"
   }
 }

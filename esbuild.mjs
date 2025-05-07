@@ -25,7 +25,7 @@ await esbuild.build({
   target: 'es6',
   platform: 'browser',
   outfile: 'tmp/worker.js',
-  external: ['fs', 'path']
+  external: ['fs', 'path', 'crypto']
 });
 
 const workerFileContent = fs.readFileSync('tmp/worker.js', 'utf8')
@@ -58,7 +58,7 @@ await esbuild.build({
   target: 'es6',
   platform: 'browser',
   outfile: 'tmp/worker.min.js',
-  external: ['fs', 'path']
+  external: ['fs', 'path', 'crypto']
 });
 
 const workerFileMinifyContent = fs.readFileSync('tmp/worker.min.js', 'utf8')
@@ -91,7 +91,7 @@ await esbuild.build({
   target: 'es6',
   platform: 'browser',
   outfile: 'tmp/csp/worker.js',
-  external: ['fs', 'path'],
+  external: ['fs', 'path', 'crypto'],
 });
 
 const cspWorkerFileContent = fs.readFileSync('tmp/csp/worker.js', 'utf8')
@@ -124,7 +124,7 @@ await esbuild.build({
   target: 'es6',
   platform: 'browser',
   outfile: 'tmp/csp/worker.min.js',
-  external: ['fs', 'path']
+  external: ['fs', 'path', 'crypto']
 });
 
 const cspWorkerFileMinifyContent = fs.readFileSync('tmp/csp/worker.min.js', 'utf8')
@@ -157,7 +157,7 @@ await esbuild.build({
   target: 'es6',
   platform: 'browser',
   outfile: 'tmp/iife/worker.js',
-  external: ['fs', 'path']
+  external: ['fs', 'path', 'crypto']
 });
 
 const iifeWorkerFileMinifyContent = fs.readFileSync('tmp/iife/worker.js', 'utf8')
