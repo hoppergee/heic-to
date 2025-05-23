@@ -42,14 +42,21 @@ const decodeBuffer = async (buffer) => {
     worker.postMessage(message);
     const handleEvent = (event) => {
       if (event.data.id === id) {
-        event.currentTarget.removeEventListener("message", handleEvent)
+        event.currentTarget.removeEventListener("message", handleEvent);
+        event.currentTarget.removeEventListener("error", handleError);
         if (event.data.error) {
           return reject(event.data.error);
         }
         return resolve(event.data.imageData);
       }
     }
+    const handleError = (event) => {
+      event.currentTarget.removeEventListener("message", handleEvent);
+      event.currentTarget.removeEventListener("error", handleError);
+      return reject(event.data);
+    }
     worker.addEventListener("message", handleEvent);
+    worker.addEventListener("error", handleError);
 	});
 }
 
@@ -65,15 +72,27 @@ const encodeByCanvas = async (imageBuffer) => {
   return canvas;
 };
 
+const releaseCanvas = (canvas) => {
+    canvas.width = 1;
+    canvas.height = 1;
+    const ctx = canvas.getContext('2d');
+    ctx && ctx.clearRect(0, 0, 1, 1);
+}
+
 const heicTo = async ({blob, type, quality}) => {
   const imageBuffer = await blob.arrayBuffer()
-  const canvas = await encodeByCanvas(imageBuffer);
-  return await new Promise((resolve, reject) => canvas.toBlob(blob => {
-    if (blob != null)
-      resolve(blob);
-    else
-      reject(`Can't convert canvas to blob.`);
-  }, type, quality));
+  let canvas;
+  try {
+    canvas = await encodeByCanvas(imageBuffer);
+    return await new Promise((resolve, reject) => canvas.toBlob(blob => {
+      if (blob != null)
+        resolve(blob);
+      else
+        reject(`Can't convert canvas to blob.`);
+    }, type, quality));
+  } finally {
+    if (canvas) releaseCanvas(canvas);
+  }
 };
 
 export {
