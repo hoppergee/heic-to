@@ -8,6 +8,7 @@ Currently, heic-to is using [libheif 1.19.8](https://github.com/strukturag/libhe
 
 | Release  | libheif  |
 | -------- | -------- |
+| 1.1.14   | 1.19.8   | 
 | 1.1.13   | 1.19.8   | 
 | 1.1.12   | 1.19.7   | 
 | 1.1.11   | 1.19.7   | 
