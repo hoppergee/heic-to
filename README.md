@@ -87,7 +87,7 @@ Fix it by using `csp/heic-to`
 If you would like to access heic-to with pure JavaScript without package builder like with CDN.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/heic-to@1.2.0/dist/iife/heic-to.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/heic-to@1.2.1/dist/iife/heic-to.js"></script>
 <script>
   /*...*/
   if (await HeicTo.isHeic(file)) {
