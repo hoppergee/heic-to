@@ -31,6 +31,10 @@ Currently, heic-to is using [libheif 1.19.8](https://github.com/strukturag/libhe
 | 1.0.1    | 1.18.2   |
 | 1.0.0    | 1.18.1   |
 
+### Demo
+
+Try the [🌟 live demo](https://hoppergee.github.io/heic-to/example/).
+
 ### Usage
 
 #### Check whether the image is HEIC or not 
