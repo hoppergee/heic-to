@@ -102,6 +102,15 @@ If you would like to access heic-to with pure JavaScript without package builder
 </script>
 ```
 
+#### Call heic-to in web worker
+
+If you want to call `heicTo` in web workers:
+
+```diff
+- import { heicTo } from "heic-to"
++ import { heicTo } from "heic-to/next"
+```
+
 ### Development guide
 
 #### How to fast test your changes on local?

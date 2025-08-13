@@ -178,3 +178,37 @@ esbuild.build({
     WORKER_FILE_CONTENT: JSON.stringify(iifeWorkerFileMinifyContent)
   }
 });
+
+
+// ################
+// Build for next/heic-to.js
+// ################
+
+await esbuild.build({
+  entryPoints: [
+    'tmp/src/worker.js'
+  ],
+  bundle: true,
+  minify: true,
+  target: 'es6',
+  platform: 'browser',
+  outfile: 'tmp/worker.js',
+  external: ['fs', 'path', 'crypto']
+});
+
+const nextWorkerFileContent = fs.readFileSync('tmp/worker.js', 'utf8')
+
+esbuild.build({
+  entryPoints: [
+    'src/next/index.js'
+  ],
+  bundle: true,
+  minify: true,
+  target: 'es6',
+  platform: 'browser',
+  outfile: 'dist/next/heic-to.js',
+  format: 'esm',
+  define: {
+    WORKER_FILE_CONTENT: JSON.stringify(nextWorkerFileContent)
+  }
+});

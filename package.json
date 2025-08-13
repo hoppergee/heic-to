@@ -13,6 +13,11 @@
       "types": "./dist/csp/heic-to.d.ts",
       "import": "./dist/csp/heic-to.js",
       "require": "./dist/csp/heic-to.js"
+    },
+    "./next": {
+      "types": "./dist/next/heic-to.d.ts",
+      "import": "./dist/next/heic-to.js",
+      "require": "./dist/next/heic-to.js"
     }
   },
   "scripts": {
