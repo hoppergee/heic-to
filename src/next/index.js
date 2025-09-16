@@ -104,7 +104,16 @@ const heicTo = async ({blob, type, quality}) => {
   }
 };
 
+const heicToBitmap = async (blob, options) => {
+  const imageBuffer = await blob.arrayBuffer();
+
+  const imageData = await decodeBuffer(imageBuffer);
+
+  return createImageBitmap(imageData, options);
+};
+
 export {
   isHeic,
-  heicTo
+  heicTo,
+  heicToBitmap,
 }

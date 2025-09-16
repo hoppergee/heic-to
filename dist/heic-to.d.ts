@@ -31,3 +31,11 @@ export interface HeicToOptions {
  * @returns A promise that resolves to the converted image blob.
  */
 export declare function heicTo(options: HeicToOptions): Promise<Blob>;
+
+/**
+ * Converts a HEIC image to another format.
+ * @param blob - The HEIC image blob to convert.
+ * @param options - Options for creating the ImageBitmap.
+ * @returns A promise that resolves to the converted image blob.
+ */
+export declare function heicToBitmap(blob: Blob, options?: ImageBitmapOptions): Promise<ImageBitmap>;
