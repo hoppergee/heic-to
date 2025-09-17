@@ -101,19 +101,25 @@ var HeicTo = (() => {
         const ctx = canvas.getContext("2d");
         ctx && ctx.clearRect(0, 0, 1, 1);
       };
-      heicTo = (_0) => __async(null, [_0], function* ({ blob, type, quality }) {
-        const imageBuffer = yield blob.arrayBuffer();
-        let canvas;
-        try {
-          canvas = yield encodeByCanvas(imageBuffer);
-          return yield new Promise((resolve, reject) => canvas.toBlob((blob2) => {
-            if (blob2 != null)
-              resolve(blob2);
-            else
-              reject(`Can't convert canvas to blob.`);
-          }, type, quality));
-        } finally {
-          if (canvas) releaseCanvas(canvas);
+      heicTo = (_0) => __async(null, [_0], function* ({ blob, type, quality, options }) {
+        if (type == "bitmap") {
+          const imageBuffer = yield blob.arrayBuffer();
+          const imageData = yield decodeBuffer(imageBuffer);
+          return createImageBitmap(imageData, options);
+        } else {
+          const imageBuffer = yield blob.arrayBuffer();
+          let canvas;
+          try {
+            canvas = yield encodeByCanvas(imageBuffer);
+            return yield new Promise((resolve, reject) => canvas.toBlob((blob2) => {
+              if (blob2 != null)
+                resolve(blob2);
+              else
+                reject(`Can't convert canvas to blob.`);
+            }, type, quality));
+          } finally {
+            if (canvas) releaseCanvas(canvas);
+          }
         }
       });
     }
