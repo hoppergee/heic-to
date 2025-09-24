@@ -84,8 +84,7 @@ const heicTo = async ({blob, type, quality, options}) => {
     const imageBuffer = await blob.arrayBuffer();
     const imageData = await decodeBuffer(imageBuffer);
     return createImageBitmap(imageData, options);
-  }
-  else {
+  } else {
     const imageBuffer = await blob.arrayBuffer()
     let canvas;
     try {
