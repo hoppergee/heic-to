@@ -47,7 +47,7 @@ const file = field.files[0]
 await isHeic(file)
 ```
 
-#### Convert HEIC to JPEG/PNG
+#### Convert HEIC to JPEG/PNG/Bitmap
 
 
 ```js
@@ -65,6 +65,14 @@ const png = await heicTo({
   blob: file,
   type: "image/png",
   quality: 0.5
+})
+
+const bitmap = await heicTo({
+  blob: file,
+  type: "bitmap",
+  options: {
+    imageOrientation: "flipY"
+  }
 })
 ```
 
