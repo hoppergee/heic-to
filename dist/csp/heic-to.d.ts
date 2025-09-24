@@ -5,29 +5,44 @@
  */
 export declare function isHeic(file: File): Promise<boolean>;
 
+type ImageMime = `${"image"}/${string}`; // e.g. "image/jpeg", "image/png", "image/webp"
+type HeicTarget = "bitmap" | ImageMime;
+
 /**
- * Options for converting HEIC images.
+ * Converts a HEIC image to another format.
+ * @param args - The conversion options.
+ * @returns A promise that resolves to the converted image bitmap.
  */
-export interface HeicToOptions {
+export function heicTo(args: {
   /**
    * The HEIC image blob to convert.
    */
   blob: Blob;
-
+  type: "bitmap";
   /**
-   * The desired output image MIME type (e.g., 'image/jpeg', 'image/png').
+   * Options for creating the ImageBitmap.
    */
-  type: string;
-
-  /**
-   * The quality of the output image, between 0 and 1.
-   */
-  quality?: number;
-}
+  options?: ImageBitmapOptions;
+  quality?: never;
+}): Promise<ImageBitmap>;
 
 /**
  * Converts a HEIC image to another format.
- * @param options - The conversion options.
+ * @param args - The conversion options.
  * @returns A promise that resolves to the converted image blob.
  */
-export declare function heicTo(options: HeicToOptions): Promise<Blob>;
+export function heicTo<M extends Exclude<HeicTarget, "bitmap">>(args: {
+  /**
+   * The HEIC image blob to convert.
+   */
+  blob: Blob;
+  /**
+   * The desired output image MIME type (e.g., 'image/jpeg', 'image/png').
+   */
+  type: M;
+  /**
+   * The quality of the output image, between 0 and 1.
+   */
+  quality?: number;        // 0..1 for JPEG/WEBP, ignored by PNG
+  options?: never;
+}): Promise<Blob>;

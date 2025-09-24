@@ -77,34 +77,30 @@ const releaseCanvas = (canvas) => {
     ctx && ctx.clearRect(0, 0, 1, 1);
 }
 
-const heicTo = async ({blob, type, quality}) => {
-  const imageBuffer = await blob.arrayBuffer()
-  let canvas;
-  try {
-    canvas = await encodeByCanvas(imageBuffer);
-
-    return await new Promise((resolve, reject) => {
-
-      canvas.convertToBlob({
-        type: type,
-        quality: quality,
-      }).then(blob => {
-        if (blob) {
+const heicTo = async ({blob, type, quality, options}) => {
+  if (type == "bitmap") {
+    const imageBuffer = await blob.arrayBuffer();
+    const imageData = await decodeBuffer(imageBuffer);
+    return createImageBitmap(imageData, options);
+  }
+  else {
+    const imageBuffer = await blob.arrayBuffer()
+    let canvas;
+    try {
+      canvas = await encodeByCanvas(imageBuffer);
+      return await new Promise((resolve, reject) => canvas.toBlob(blob => {
+        if (blob != null)
           resolve(blob);
-        } else {
+        else
           reject(`Can't convert canvas to blob.`);
-        }
-      }).catch(error => {
-        reject(`Can't convert canvas to blob.`);
-      })
-
-    });
-  } finally {
-    if (canvas) releaseCanvas(canvas);
+      }, type, quality));
+    } finally {
+      if (canvas) releaseCanvas(canvas);
+    }
   }
 };
 
 export {
   isHeic,
-  heicTo
+  heicTo,
 }
