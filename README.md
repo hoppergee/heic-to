@@ -8,6 +8,7 @@ Currently, heic-to is using [libheif 1.20.2](https://github.com/strukturag/libhe
 
 | Release  | libheif  |
 | -------- | -------- |
+| 1.3.1    | 1.20.2   | 
 | 1.3.0    | 1.20.2   | 
 | 1.2.2    | 1.20.2   | 
 | 1.2.1    | 1.20.1   | 
@@ -97,7 +98,7 @@ Fix it by using `csp/heic-to`
 If you would like to access heic-to with pure JavaScript without package builder like with CDN.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/heic-to@1.3.0/dist/iife/heic-to.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/heic-to@1.3.1/dist/iife/heic-to.js"></script>
 <script>
   /*...*/
   if (await HeicTo.isHeic(file)) {
