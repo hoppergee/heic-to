@@ -87,12 +87,7 @@ const heicTo = async ({blob, type, quality, options}) => {
     let canvas;
     try {
       canvas = await encodeByCanvas(imageBuffer);
-      return await new Promise((resolve, reject) => canvas.toBlob(blob => {
-        if (blob != null)
-          resolve(blob);
-        else
-          reject(`Can't convert canvas to blob.`);
-      }, type, quality));
+      return await canvas.convertToBlob({ type, quality });
     } finally {
       if (canvas) releaseCanvas(canvas);
     }
