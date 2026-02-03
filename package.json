@@ -1,6 +1,6 @@
 {
   "name": "heic-to",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Converting HEIF/HEIF image formats to PNG/JPEG in the browser",
   "main": "dist/heic-to.js",
   "exports": {
