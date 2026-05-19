@@ -8,6 +8,7 @@ Currently, heic-to is using [libheif 1.21.2](https://github.com/strukturag/libhe
 
 | Release  | libheif  |
 | -------- | -------- |
+| 1.4.3    | 1.21.2   | 
 | 1.4.2    | 1.21.2   | 
 | 1.4.1    | 1.21.1   | 
 | 1.4.0    | 1.21.0   | 
@@ -101,7 +102,7 @@ Fix it by using `csp/heic-to`
 If you would like to access heic-to with pure JavaScript without package builder like with CDN.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/heic-to@1.4.2/dist/iife/heic-to.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/heic-to@1.4.3/dist/iife/heic-to.js"></script>
 <script>
   /*...*/
   if (await HeicTo.isHeic(file)) {
@@ -155,8 +156,8 @@ Start building
 cd libheif
 mkdir buildjs
 cd buildjs
-USE_WASM=0 ../build-emscripten.sh ..
+LIBDE265_VERSION=1.0.16 USE_WASM=0 ../build-emscripten.sh ..
 
 # Or build without unsafe-eval
-USE_UNSAFE_EVAL=0 USE_WASM=0 ../build-emscripten.sh ..
+LIBDE265_VERSION=1.0.16 USE_UNSAFE_EVAL=0 USE_WASM=0 ../build-emscripten.sh ..
 ```
