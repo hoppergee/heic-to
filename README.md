@@ -4,10 +4,11 @@ Convert HEIC/HEIF images to JPEG, PNG in browser using Javascript.
 
 Inspired by [heic2any](https://github.com/alexcorvi/heic2any) and [libheif-web](https://github.com/joutvhu/libheif-web). The purpose of heic-to is to continuously follow up on releases of [libheif](https://github.com/strukturag/libheif) to be able to preview HEIC/HEIF images in browser.
 
-Currently, heic-to is using [libheif 1.21.2](https://github.com/strukturag/libheif/releases/tag/v1.21.2) under the hood. 
+Currently, heic-to is using [libheif 1.22.0](https://github.com/strukturag/libheif/releases/tag/v1.22.0) under the hood. 
 
 | Release  | libheif  |
 | -------- | -------- |
+| 1.5.0    | 1.22.0   | 
 | 1.4.3    | 1.21.2   | 
 | 1.4.2    | 1.21.2   | 
 | 1.4.1    | 1.21.1   | 
@@ -102,7 +103,7 @@ Fix it by using `csp/heic-to`
 If you would like to access heic-to with pure JavaScript without package builder like with CDN.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/heic-to@1.4.3/dist/iife/heic-to.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/heic-to@1.5.0/dist/iife/heic-to.js"></script>
 <script>
   /*...*/
   if (await HeicTo.isHeic(file)) {
