@@ -85,6 +85,34 @@ const bitmap = await heicTo({
 })
 ```
 
+#### Convert every image inside a HEIC file
+
+A HEIC/HEIF file can hold more than one image: burst photos, image collections, or the tiles a grid
+image is composed of. By default `heicTo` converts the first one. Pass `multiple: true` to get all of
+them, in file order:
+
+```js
+import { heicTo } from "heic-to"
+
+const jpegs = await heicTo({
+  blob: file,
+  type: "image/jpeg",
+  quality: 0.5,
+  multiple: true
+})
+// => Blob[]
+
+const bitmaps = await heicTo({
+  blob: file,
+  type: "bitmap",
+  multiple: true
+})
+// => ImageBitmap[]
+```
+
+This returns the images that are stored in the file as separate images. Frames of an animated HEIF
+*sequence track* are not stored that way and are therefore not included.
+
 #### Cotent Security Policy
 
 When meets CSP issue like this:
