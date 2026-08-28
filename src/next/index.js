@@ -34,11 +34,11 @@ const loadWorker = () => {
     return worker
 }
 
-const decodeBuffer = async (buffer) => {
+const decodeBuffer = async (buffer, multiple) => {
 	return new Promise((resolve, reject) => {
     loadWorker()
 		const id = (Math.random() * new Date().getTime()).toString();
-		const message = { id, buffer };
+		const message = { id, buffer, multiple };
     worker.postMessage(message);
     const handleEvent = (event) => {
       if (event.data.id === id) {
@@ -47,7 +47,7 @@ const decodeBuffer = async (buffer) => {
         if (event.data.error) {
           return reject(event.data.error);
         }
-        return resolve(event.data.imageData);
+        return resolve(event.data.imageDataList);
       }
     }
     const handleError = (event) => {
@@ -60,9 +60,7 @@ const decodeBuffer = async (buffer) => {
 	});
 }
 
-const encodeByCanvas = async (imageBuffer) => {
-  const imageData = await decodeBuffer(imageBuffer)
-
+const canvasFromImageData = (imageData) => {
   const canvas = new OffscreenCanvas(imageData.width, imageData.height);
 
   const ctx = canvas.getContext('2d')
@@ -77,21 +75,40 @@ const releaseCanvas = (canvas) => {
     ctx && ctx.clearRect(0, 0, 1, 1);
 }
 
-const heicTo = async ({blob, type, quality, options}) => {
-  if (type == "bitmap") {
-    const imageBuffer = await blob.arrayBuffer();
-    const imageData = await decodeBuffer(imageBuffer);
-    return createImageBitmap(imageData, options);
-  } else {
-    const imageBuffer = await blob.arrayBuffer()
-    let canvas;
-    try {
-      canvas = await encodeByCanvas(imageBuffer);
-      return await canvas.convertToBlob({ type, quality });
-    } finally {
-      if (canvas) releaseCanvas(canvas);
-    }
+const encodeByCanvas = async (imageData, type, quality) => {
+  let canvas;
+  try {
+    canvas = canvasFromImageData(imageData);
+    return await canvas.convertToBlob({ type, quality });
+  } finally {
+    if (canvas) releaseCanvas(canvas);
   }
+};
+
+const heicTo = async ({blob, type, quality, options, multiple}) => {
+  const imageBuffer = await blob.arrayBuffer()
+  const imageDataList = await decodeBuffer(imageBuffer, multiple)
+
+  if (type == "bitmap") {
+    if (!multiple) {
+      return createImageBitmap(imageDataList[0], options);
+    }
+    const bitmaps = [];
+    for (const imageData of imageDataList) {
+      bitmaps.push(await createImageBitmap(imageData, options));
+    }
+    return bitmaps;
+  }
+
+  if (!multiple) {
+    return encodeByCanvas(imageDataList[0], type, quality);
+  }
+  // One canvas at a time, each released right after use (see issue #7, Safari canvas memory).
+  const blobs = [];
+  for (const imageData of imageDataList) {
+    blobs.push(await encodeByCanvas(imageData, type, quality));
+  }
+  return blobs;
 };
 
 export {
