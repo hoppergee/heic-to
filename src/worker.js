@@ -1,8 +1,10 @@
 import buildLibheif from LIB_HEIF_PATH;
 
-const libheif = buildLibheif()
+let libheif = buildLibheif()
 
 const decodeBuffer = async (buffer) => {
+  libheif = await libheif;
+
   let decoder, data;
   try {
     decoder = new libheif.HeifDecoder();
