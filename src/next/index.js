@@ -1,6 +1,5 @@
 const isHeic = async (file) => {
-  const buffer = await file.arrayBuffer()
-  const slicedBuffer = buffer.slice(8, 12)
+  const slicedBuffer = await file.slice(8, 12).arrayBuffer()
   const brandMajor = new TextDecoder('utf-8')
     .decode(slicedBuffer)
     .replace('\0', ' ')

@@ -32,8 +32,7 @@ var HeicTo = (() => {
   var init_index = __esm({
     "src/index.js"() {
       isHeic = (file) => __async(null, null, function* () {
-        const buffer = yield file.arrayBuffer();
-        const slicedBuffer = buffer.slice(8, 12);
+        const slicedBuffer = yield file.slice(8, 12).arrayBuffer();
         const brandMajor = new TextDecoder("utf-8").decode(slicedBuffer).replace("\0", " ").trim();
         switch (brandMajor) {
           case "mif1":
