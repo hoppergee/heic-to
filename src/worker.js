@@ -14,7 +14,7 @@ const decodeBuffer = async (buffer) => {
 
     // The list is in file order, so other images, like grid tiles that are not
     // marked hidden, can come before the primary image.
-    const image = data.find((image) => image.is_primary()) || data[0]
+    const image = data.find((img) => img.is_primary()) || data[0]
 
     const width = image.get_width();
     const height = image.get_height();
